@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+load_dotenv()
 # Create your views here.
 # thank you mr django i will
 class BlogListView(ListView):
