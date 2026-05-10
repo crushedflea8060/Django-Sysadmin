@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% if request.user.is_authenticated %}
+   <p>Hi, {{ request.user.username }}!</p>
+{% endif %}
 {% block content %}
    {% for post in object_list %}
       <div class="post-entry">
