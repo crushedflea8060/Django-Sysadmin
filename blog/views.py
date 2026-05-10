@@ -32,7 +32,7 @@ def login_view(req):
 def callback_view(req):
    code = req.GET.get("code")
    id = os.getenv("CLIENT_ID")
-   id = os.getenv("ION_CLIENT_SECRET")
+   secret = os.getenv("ION_CLIENT_SECRET")
    response = requests.post("https://ion.tjhsst.edu/oauth/token/", data={
    "grant_type":"authorization_code",
    "code":code,
@@ -42,7 +42,8 @@ def callback_view(req):
    })
    data = response.json()
    access_token = data.get("access_token")
-   profile_response = requests.get("https://ion.tjhsst.edu/api/profile", headers={"Authorization:" f"Bearer {access_token}"})
+   profile_response = requests.get("https://ion.tjhsst.edu/api/profile", headers={"Authorization": f"Bearer {access_token}"})
+   profile_data = profile_response.json()
    username = profile_data.get("ion_username")
    user, created = User.objects.get_or_create(username=username)
    profile, profile_created = Profile.objects.get_or_create(user=user)
