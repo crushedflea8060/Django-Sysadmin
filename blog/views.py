@@ -37,11 +37,11 @@ def callback_view(req):
    "code":code,
    "client_id":id,
    "client_secret": secret,
-   "redirect_uri" = os.getenv("URI")
+   "redirect_uri" : os.getenv("URI")
    })
    data = response.json()
    access_token = data.get("access_token")
-   profile_response = requests.get("https://ion.tjhsst.edu/api/profile", headers={"Authorization:" f"Bearer {access_token}")
+   profile_response = requests.get("https://ion.tjhsst.edu/api/profile", headers={"Authorization:" f"Bearer {access_token}"})
    username = profile_data.get("ion_username")
    user, created = User.objects.get_or_create(username=username)
    profile, profile_created = Profile.objects.get_or_create(user=user)
