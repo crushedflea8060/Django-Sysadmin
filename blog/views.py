@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, User
+from .models import Post, User, Profile
 import os
 import requests
 from dotenv import load_dotenv
@@ -23,7 +23,10 @@ class BlogDetailView(DetailView):
 class BlogCreateView(LoginRequiredMixin, CreateView):
    model = Post
    template_name = 'post_new.html'
-   fields = '__all__'
+   fields = ['title','body']
+   def form_valid(self, form):
+      form.instance.author = self.request.user  # Set author to current user
+      return super().form_valid(form)
 def login_view(req):
    client_id = os.getenv("CLIENT_ID")
    redirect_uri = os.getenv("URI")
