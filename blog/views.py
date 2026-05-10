@@ -32,6 +32,7 @@ def login_view(req):
 def callback_view(req):
    code = req.GET.get("code")
    id = os.getenv("CLIENT_ID")
+   id = os.getenv("ION_CLIENT_SECRET")
    response = requests.post("https://ion.tjhsst.edu/oauth/token/", data={
    "grant_type":"authorization_code",
    "code":code,
