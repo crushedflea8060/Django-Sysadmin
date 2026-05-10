@@ -39,7 +39,7 @@ def callback_view(req):
    "client_secret": secret,
    "redirect_uri" = os.getenv("URI")
    })
-   data = response.json
+   data = response.json()
    access_token = data.get("access_token")
    profile_response = requests.get("https://ion.tjhsst.edu/api/profile", headers={"Authorization:" f"Bearer {access_token}")
    username = profile_data.get("ion_username")
