@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#restrict logins
+LOGIN_URL = 'login'
 # Application definition
 
 INSTALLED_APPS = [
